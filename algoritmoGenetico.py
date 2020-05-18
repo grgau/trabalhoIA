@@ -28,7 +28,7 @@ class AlgoritmoGenetico():
     return filho
 
   def mutacao(self, individuo):
-    geneMutado = random.choice( list(self.parametros_algoritmo.keys()) )
+    geneMutado = random.choice([parametro for parametro in list(self.parametros_algoritmo.keys()) if parametro != 'entrada'])
     individuo.parametros[geneMutado] = random.choice(self.parametros_algoritmo[geneMutado])
     return individuo
 
