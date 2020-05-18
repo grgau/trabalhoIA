@@ -10,10 +10,10 @@ def main():
 
   parametros = {
     'algorithm' : ['best', 'generic', 'prims_kdtree', 'prims_balltree', 'boruvka_kdtree', 'boruvka_balltree'],
-    'min_cluster_size' : [2<<exponent for exponent in range(8)],
+    'min_cluster_size' : [2<<exponent for exponent in range(7)],
     'min_samples': [1<<exponent for exponent in range(6)],
     'cluster_selection_method' : ['eom', 'leaf'],
-    'cluster_selection_epsilon' : np.around(np.arange(0.1, 1.0, 0.05), decimals=2).astype(type('float', (float,), {})),
+    'cluster_selection_epsilon' : np.around(np.arange(0.1, 0.7, 0.05), decimals=2).astype(type('float', (float,), {})),
     'metric': ['euclidean', 'manhattan', 'jaccard'],
     'entrada': entrada
   }
@@ -32,7 +32,7 @@ def main():
     print('---------\n')
 
   for i in range(0, len(populacao)):
-    print('Printando a %d populacao: ', i)
+    print('Printando a %d populacao: ' % i)
     print(populacao[i].fitness())
     populacao[i].printSelf()
 

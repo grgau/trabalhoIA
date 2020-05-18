@@ -21,7 +21,8 @@ class HDBScan():
                         gen_min_span_tree = True)
 
     clusterer.fit(self.entrada)
-    score = self.balance(clusterer.labels_)
+    balance = self.balance(clusterer.labels_)
+    score = (balance + len(Counter(clusterer.labels_).keys()))/2
     return score
 
   def balance(self, data):
