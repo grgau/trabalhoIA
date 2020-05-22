@@ -21,8 +21,15 @@ class HDBScan():
                         gen_min_span_tree = True)
 
     clusterer.fit(self.entrada)
+
     balance = self.balance(clusterer.labels_)
-    score = (balance + len(Counter(clusterer.labels_).keys()))/2
+
+    c = Counter(clusterer.labels_)
+    percents = [(i, c[i] / len(clusterer.labels_) * 100.0) for i in c]
+    sorted(percents, key=lambda tup: tup[1], reverse=True)
+    noise_percents = [item for item in percents if item[0] == -1][0][1]
+
+    score = (balance * 10) + len(Counter(clusterer.labels_).keys())
     return score
 
   def balance(self, data):
