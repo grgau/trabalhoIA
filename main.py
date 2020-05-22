@@ -19,22 +19,20 @@ def main():
   }
 
   #criação do algoritmo genético e da população inicial
-  tamanho_populacao = 100
-  num_geracoes = 50
+  tamanho_populacao = 20
+  num_geracoes = 10
   algoritmo = AlgoritmoGenetico(parametros, 0.2, 0.4, 0.1, HDBScan)
   populacao = algoritmo.criaPopulacao(tamanho_populacao)
 
   for i in range(0, num_geracoes):
     print('Geração: ' + str(i+1))
     print('Fitness: ' + str(algoritmo.mediaPopulacao(populacao)))
-    populacao[0].printSelf()
-    populacao = algoritmo.evoluiGeracao(populacao)
-    print('---------\n')
 
-  for i in range(0, len(populacao)):
-    print('Printando a %d populacao: ' % i)
-    print(populacao[i].fitness())
-    populacao[i].printSelf()
+    for pop in populacao:
+      pop.printSelf()
+      print('---------\n')
+
+    populacao = algoritmo.evoluiGeracao(populacao)
 
 if __name__ == '__main__':
   warnings.simplefilter('ignore', UserWarning)
