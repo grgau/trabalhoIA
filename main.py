@@ -10,7 +10,7 @@ def main():
     "min_cluster_size" : [2<<exponent for exponent in range(7)],
     "min_samples": [1<<exponent for exponent in range(6)],
     "cluster_selection_method" : ["eom", "leaf"],
-    "cluster_selection_epsilon" : np.around(np.arange(0.1, 0.7, 0.05), decimals=2).astype(type("float", (float,), {})),
+    "cluster_selection_epsilon" : np.around(np.arange(0.0, 0.5, 0.05), decimals=2).astype(type("float", (float,), {})),
     "metric": ["euclidean", "manhattan", "jaccard"],
   }
 
