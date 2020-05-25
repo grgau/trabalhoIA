@@ -20,8 +20,9 @@ class HDBScan():
                         min_samples = self.parametros["min_samples"],
                         cluster_selection_method = self.parametros["cluster_selection_method"],
                         cluster_selection_epsilon = self.parametros["cluster_selection_epsilon"])
-    self.labels = clusterer.labels_
+
     clusterer.fit(self.data)
+    self.labels = clusterer.labels_
     silhouette_score = self.silhouette_score(self.data, self.labels)
 
     # balance = self.balance(clusterer.labels_)
