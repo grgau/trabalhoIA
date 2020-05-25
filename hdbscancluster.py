@@ -20,9 +20,9 @@ class HDBScan():
                         min_samples = self.parametros["min_samples"],
                         cluster_selection_method = self.parametros["cluster_selection_method"],
                         cluster_selection_epsilon = self.parametros["cluster_selection_epsilon"])
-
+    self.labels = clusterer.labels_
     clusterer.fit(self.data)
-    silhouette_score = self.silhouette_score(self.data, clusterer.labels_)
+    silhouette_score = self.silhouette_score(self.data, self.labels)
 
     # balance = self.balance(clusterer.labels_)
     # percents = self.calc_percents(clusterer.labels_)
@@ -61,3 +61,5 @@ class HDBScan():
 
   def printSelf(self):
     print('\'' + str(json.dumps(self.parametros)) + '\'')
+    print("\n")
+    print(self.calc_percents(self.labels))
