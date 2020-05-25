@@ -5,8 +5,8 @@ class AlgoritmoGenetico():
     self.parametros_algoritmo = parametros_algoritmo
     self.chance_mutacao = chance_mutacao
     self.qntd_mantida = qntd_mantida
-    self.algoritmo_aplicado = algoritmo_aplicado
     self.chance_manter = chance_manter
+    self.algoritmo_aplicado = algoritmo_aplicado
 
   def criaPopulacao(self, tamanho_populacao):
     populacao = []
@@ -21,14 +21,13 @@ class AlgoritmoGenetico():
     filho = self.algoritmo_aplicado(self.parametros_algoritmo)
 
     for parametro in self.parametros_algoritmo:
-      if parametro is not 'entrada':
-        filho.parametros[parametro] = random.choice([ mae.parametros[parametro], pai.parametros[parametro] ])
+      filho.parametros[parametro] = random.choice([ mae.parametros[parametro], pai.parametros[parametro] ])
     if self.chance_mutacao > random.random():
       filho = self.mutacao(filho)
     return filho
 
   def mutacao(self, individuo):
-    geneMutado = random.choice([parametro for parametro in list(self.parametros_algoritmo.keys()) if parametro != 'entrada'])
+    geneMutado = random.choice([parametro for parametro in list(self.parametros_algoritmo.keys())])
     individuo.parametros[geneMutado] = random.choice(self.parametros_algoritmo[geneMutado])
     return individuo
 
